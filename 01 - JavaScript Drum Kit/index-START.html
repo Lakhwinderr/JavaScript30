@@ -59,7 +59,33 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-
+  document.addEventListener('keydown', e => {
+    //get the audio element and the key element based on the keyCode
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    //if audio doesn't exist return immedietly
+    if(!audio){
+      return;
+    }
+    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    //now before playing the sound make sure to stop the existing sound
+    audio.currentTime = 0;
+    audio.play()
+    //alright, now work with the css 
+    //add the playing class to the key
+    key.classList.add("playing")
+    //okay need to remove the class once the transition is over
+    //to do so you need to add another eventlistener for all the keys
+  
+  })
+  const keys = document.querySelectorAll(".key")
+  keys.forEach(key => {
+    key.addEventListener("transitionend", e => {
+      if(e.propertyName !== "transform"){
+        return;
+      }
+      key.classList.remove("playing")
+    })
+  })
 </script>
 
 
