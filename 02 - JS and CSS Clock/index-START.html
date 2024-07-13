@@ -4,12 +4,110 @@
   <meta charset="UTF-8">
   <title>JS + CSS Clock</title>
   <link rel="icon" href="https://fav.farm/🔥" />
+  <style>
+    .clock{
+      transform: rotate(90deg);
+    }
+    .hour{
+      position: absolute;
+      transform: rotate(-90deg) translate(50%);
+    
+    }
+    .hour:nth-of-type(1){
+      top: 50%;
+    }
+    .hour:nth-of-type(2){
+      top:25%;
+      left:6.75%
+     
+    }
+    .hour:nth-of-type(3){
+      top:6.75%;
+      left: 25%;
+    }
+ 
+    .hour:nth-of-type(4){
+      top: 0%;
+      left: 50%;
+    }
+    .hour:nth-of-type(5){
+      top: 6.75%;
+      right: 25%;
+    }
+    
+    .hour:nth-of-type(6){
+      top: 25%;
+      right: 6.75%;
+    }
+    
+    .hour:nth-of-type(7){
+      top: 50%;
+      left: 100%;
+    }
+    .hour:nth-of-type(8){
+      top:75%;
+      right: 6.75%
+    }
+    .hour:nth-of-type(9){
+      top: 93.25%;
+      right: 25%;
+    }
+    .hour:nth-of-type(10){
+      top: 100%;
+      left: 50%;
+    }
+    .hour:nth-of-type(11){
+      top: 93.25%;
+      left: 25%;
+    }
+    .hour:nth-of-type(12){
+      top: 75%;
+      left: 6.755%;
+    }
+    .hand{
+      transform-origin: 100%;
+    }
+    .hand {
+      width: 50%;
+      height: 6px;
+      background: black;
+      position: absolute;
+      top: 50%;
+    }
+    .hour-hand{
+      width: 40%;
+      top: 50%;
+      left: 10%;
+    }
+    .min-hand{
+      width: 45%;
+      top: 50%;
+      left: 5%;
+    }
+    /* .second-hand{
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    } */
+  </style>
 </head>
 <body>
 
 
     <div class="clock">
       <div class="clock-face">
+        <div class="hour">12</div>
+        <div class="hour">1</div>
+        <div class="hour">2</div>
+        <div class="hour">3</div>
+        <div class="hour">4</div>
+        <div class="hour">5</div>
+        <div class="hour">6</div>
+        <div class="hour">7</div>
+        <div class="hour">8</div>
+        <div class="hour">9</div>
+        <div class="hour">10</div>
+        <div class="hour">11</div>
+        
         <div class="hand hour-hand"></div>
         <div class="hand min-hand"></div>
         <div class="hand second-hand"></div>
@@ -19,7 +117,7 @@
 
   <style>
     html {
-      background: #018DED url(https://unsplash.it/1500/1000?image=881&blur=5);
+      background: #018DED ;
       background-size: cover;
       font-family: 'helvetica neue';
       text-align: center;
@@ -57,19 +155,27 @@
       transform: translateY(-3px); /* account for the height of the clock hands */
     }
 
-    .hand {
-      width: 50%;
-      height: 6px;
-      background: black;
-      position: absolute;
-      top: 50%;
-    }
+   
 
   </style>
 
   <script>
+    
+    const updateTime = () =>{
+      const now = new Date();
+      const seconds = (now.getSeconds()/60)*360 ;
+      const minutes = (now.getMinutes()/60) * 360 + ((now.getSeconds()/60)*6);
+      const hour = (now.getHours()/12) * 360 + ((now.getMinutes()/60)*30) ;
 
-
+      const secondHand = document.querySelector(".second-hand");
+      const minuteHand = document.querySelector(".min-hand");
+      const hourHand = document.querySelector(".hour-hand");
+      secondHand.style.transform = `rotate(${seconds}deg)`;
+      minuteHand.style.transform = `rotate(${minutes}deg)`;
+      hourHand.style.transform = `rotate(${hour}deg)`;
+      
+    }
+    setInterval(updateTime, 1000)
   </script>
 </body>
 </html>
