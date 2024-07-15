@@ -104,3 +104,5 @@ After sorting, the array `[1, 3, 2, 2, 5, 2, 3, 7]` becomes `[1, 2, 2, 2, 3, 3, 
 - Logging the comparisons helps understand the sorting process and verify the behavior of the comparison function.
 
 By understanding and utilizing the comparison function, you can effectively control the sorting order of arrays in JavaScript.
+
+Important: For the strings you can not use a.first - b.first > 0 inside the sort callback function, you have use something like this a.first > b.first cos you are not comparing numbers.
